@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS ticket;
+DROP TABLE IF EXISTS plaza;
+
+CREATE TABLE plaza (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  ocupado BOOLEAN NOT NULL
+);
+
+CREATE TABLE ticket (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  plaza_id INT NOT NULL,
+  matricula VARCHAR(250) NOT NULL,
+  pagado BOOLEAN NOT NULL,
+  entrada DATE NOT NULL,
+  salida DATE,
+  FOREIGN KEY(plaza_id) REFERENCES plaza(id)
+);
