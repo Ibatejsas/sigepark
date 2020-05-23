@@ -12,25 +12,21 @@ import com.dim.sigepark.repository.PlazaDAO;
 @SpringBootApplication
 public class SigeparkApplication {
 
-	// Vamos a utilizar la clase de configuracion para añadir 10 plazas iniciales al
-	// parking.
+	// Vamos a utilizar la clase de configuracion para implementar 20 plazas
+	// iniciales al parking.
 	private static void initPlazas(PlazaDAO plazaDAO, ParkingProperties parkingProperties) {
 		Plaza plaza;
-		// Pasar a lambda
 		for (int i = 0; i < parkingProperties.getNumber(); i++) {
 			plaza = new Plaza(false);
 			plazaDAO.save(plaza);
 		}
 	}
 
-	// Esta clase levanta todo el contexto del micro
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext context = SpringApplication.run(SigeparkApplication.class, args);
 		PlazaDAO plazaDAO = context.getBean(PlazaDAO.class);
 		ParkingProperties parkingProperties = context.getBean(ParkingProperties.class);
-
-		// vamos a obtener los BEAN
 
 		initPlazas(plazaDAO, parkingProperties);
 	}

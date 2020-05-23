@@ -28,7 +28,6 @@ public class Ticket {
 	@JoinColumn(name = "plaza_id")
 	private Plaza plaza;
 
-	// Valorar protected o public antes de entregar?
 	protected Ticket() {
 		super();
 	}

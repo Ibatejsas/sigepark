@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Plaza {
 
-	@Id // Calve principal en la base de datos de la tabla plaza
+	@Id // Clave principal en la base de datos de la tabla plaza
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Delega la estrategia a la base de datos, en H2
 	private Long id;
 	private Boolean ocupado;

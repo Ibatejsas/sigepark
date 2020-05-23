@@ -6,7 +6,7 @@ public class TicketDAOImpl implements TicketDAOCustom<Ticket> {
 
 	@Override
 	public Ticket myMethod(Ticket entity) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

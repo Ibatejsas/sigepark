@@ -5,8 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 
-@ControllerAdvice // en spring la gestion de excepciones esta centralizada, con esto decimos que
-					// coja esta
+@ControllerAdvice // gestion de excepciones
 public class SigueparkExceptionHandler {
 
 	@org.springframework.web.bind.annotation.ExceptionHandler({ HttpClientErrorException.class })
@@ -15,6 +14,6 @@ public class SigueparkExceptionHandler {
 				.body(new ErrorMessage(ex.getMessage()));
 	}
 
-	// ¿anadir mas tipos de excepciones personalizadas, investigar si es necesario?
+	// anadir excepciones aqui para mejorar presentacion en front 
 
 }
