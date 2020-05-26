@@ -1,33 +1,16 @@
 package com.dim.sigepark.config;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.core.mapping.ExposureConfiguration;
-import org.springframework.data.rest.webmvc.RepositorySearchesResource;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.RepresentationModelProcessor;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
 import com.dim.sigepark.entity.Ticket;
 
 /**
@@ -68,7 +51,6 @@ public class ConfiguracionRest implements RepositoryRestConfigurer {
 		return new CorsFilter(source);
 	}
 
-
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration restConfig) {
 		ExposureConfiguration config = restConfig.getExposureConfiguration();
@@ -83,6 +65,5 @@ public class ConfiguracionRest implements RepositoryRestConfigurer {
 		// -> httpMethods.disable(HttpMethod.PUT));
 
 	}
-	
 
 }
