@@ -1,7 +1,6 @@
 package com.dim.sigepark.entity;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

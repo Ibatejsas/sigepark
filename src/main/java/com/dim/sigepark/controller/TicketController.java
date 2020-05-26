@@ -39,10 +39,11 @@ public class TicketController {
 		List<Plaza> plazasLibres = plazaDAO.findByOcupado(false);
 
 		if (plazasLibres.size() > 0) {
-
+			if (ticketDAO.findByMatriculaAndPagado(ticket.getMatricula(), false).size()>0) {
+				throw new HttpClientErrorException(HttpStatus.PRECONDITION_FAILED, "Matricula duplicada");
+			}
 			Plaza plaza = plazasLibres.stream().findFirst().get();
 			plaza.setOcupado(true);
-
 			ticket.setPlaza(plaza);
 			Ticket newTicket = ticketDAO.save(ticket);
 			plazaDAO.save(plaza);

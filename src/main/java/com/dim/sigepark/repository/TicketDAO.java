@@ -15,7 +15,7 @@ public interface TicketDAO extends JpaRepository<Ticket, Long>, TicketDAOCustom<
 	// TODO
 	// filtar por pagado y matricula
 
-	@RestResource(exported = false)
+	@RestResource(exported = false) //para que no lo exponga, y personalizamos en el ticket controller
 	Ticket save(Ticket entity);
 
 	@RestResource(path = "entrada-despues-de")
@@ -26,5 +26,8 @@ public interface TicketDAO extends JpaRepository<Ticket, Long>, TicketDAOCustom<
 
 	@RestResource(path = "porPagado")
 	List<Ticket> findByPagado(@Param("pagado") Boolean pagado);
+	
+	@RestResource(path = "porMatriculaAndPagado")
+	List<Ticket> findByMatriculaAndPagado(@Param("matricula") String matricula, @Param("pagado") Boolean pagado);
 
 }
