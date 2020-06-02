@@ -11,10 +11,10 @@ import com.dim.sigepark.entity.Plaza;
 @RepositoryRestResource
 public interface PlazaDAO extends JpaRepository<Plaza, Long> {
 
-	@RestResource(path = "porOcupado")
+	@RestResource(path = "por-ocupado")
 	List<Plaza> findByOcupado(@Param("ocupado") Boolean ocupado);
 
-	@RestResource
+	@RestResource(path = "total-ocupado")
 	long countByOcupado(@Param("ocupado") Boolean ocupado);
 
 }

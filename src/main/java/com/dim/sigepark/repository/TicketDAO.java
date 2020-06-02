@@ -21,13 +21,13 @@ public interface TicketDAO extends JpaRepository<Ticket, Long>, TicketDAOCustom<
 	@RestResource(path = "entrada-despues-de")
 	List<Ticket> findByEntradaAfter(@Param("entrada") LocalDateTime entrada);
 
-	@RestResource(path = "porMatricula")
+	@RestResource(path = "por-matricula")
 	List<Ticket> findByMatriculaIgnoreCaseContaining(@Param("matricula") String matricula);
 
-	@RestResource(path = "porPagado")
+	@RestResource(path = "por-pagado")
 	List<Ticket> findByPagado(@Param("pagado") Boolean pagado);
 	
-	@RestResource(path = "porMatriculaAndPagado")
+	@RestResource(path = "por-matricula-y-pagado")
 	List<Ticket> findByMatriculaAndPagado(@Param("matricula") String matricula, @Param("pagado") Boolean pagado);
 
 }
