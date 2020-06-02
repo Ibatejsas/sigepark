@@ -2,6 +2,7 @@ package com.dim.sigepark.config;
 
 import java.util.Arrays;
 import java.util.Collections;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import com.dim.sigepark.entity.Plaza;
 import com.dim.sigepark.entity.Ticket;
 
 /**
@@ -58,9 +61,8 @@ public class ConfiguracionRest implements RepositoryRestConfigurer {
 		// eliminados desde el front
 		config.forDomainType(Ticket.class)
 				.withItemExposure((metadata, httpMethods) -> httpMethods.disable(HttpMethod.DELETE));
-		// config.forDomainType(Plaza.class)
-		// .withItemExposure((metadata, httpMethods) ->
-		// httpMethods.disable(HttpMethod.DELETE));
+		config.forDomainType(Plaza.class)
+		.withItemExposure((metadata, httpMethods) -> httpMethods.disable(HttpMethod.DELETE));
 		// config.forDomainType(Ticket.class).withItemExposure((metadata, httpMethods)
 		// -> httpMethods.disable(HttpMethod.PUT));
 
