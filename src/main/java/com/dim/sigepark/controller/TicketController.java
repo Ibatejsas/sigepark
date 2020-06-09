@@ -18,6 +18,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import com.dim.sigepark.entity.Plaza;
 import com.dim.sigepark.entity.Ticket;
 import com.dim.sigepark.repository.PlazaDAO;
+import com.dim.sigepark.repository.TarifaDAO;
 import com.dim.sigepark.repository.TicketDAO;
 
 @RepositoryRestController
@@ -29,6 +30,9 @@ public class TicketController {
 
 	@Autowired
 	TicketDAO ticketDAO;
+	
+	@Autowired
+	TarifaDAO tarifaDAO;
 
 	// Logica para ocupar plazas
 	@PostMapping("/tickets")

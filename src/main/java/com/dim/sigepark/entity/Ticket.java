@@ -1,12 +1,16 @@
 package com.dim.sigepark.entity;
 
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+
 
 @Entity
 public class Ticket {
@@ -15,10 +19,13 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@Column(nullable = false)
 	private String matricula;
 
+	@Column(nullable = false)
 	private boolean pagado = false;
 
+	@Column(nullable = false)
 	private LocalDateTime entrada = LocalDateTime.now();
 
 	private LocalDateTime salida;
@@ -26,18 +33,32 @@ public class Ticket {
 	@ManyToOne
 	@JoinColumn(name = "plaza_id")
 	private Plaza plaza;
+	
+	@ManyToOne
+	@JoinColumn(name = "tarifa_id")
+	private Tarifa tarifa;
 
 	protected Ticket() {
 		super();
 	}
 
-	public Ticket(String matricula, boolean pagado, LocalDateTime entrada, LocalDateTime salida, Plaza plaza) {
+	public Ticket(String matricula, boolean pagado, LocalDateTime entrada, LocalDateTime salida, Plaza plaza,
+			Tarifa tarifa) {
 		super();
 		this.matricula = matricula;
 		this.pagado = pagado;
 		this.entrada = entrada;
 		this.salida = salida;
 		this.plaza = plaza;
+		this.tarifa = tarifa;
+	}
+
+	public Tarifa getTarifa() {
+		return tarifa;
+	}
+
+	public void setTarifa(Tarifa tarifa) {
+		this.tarifa = tarifa;
 	}
 
 	public long getId() {

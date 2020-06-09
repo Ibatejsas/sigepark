@@ -15,3 +15,11 @@ CREATE TABLE ticket (
   salida DATE,
   FOREIGN KEY(plaza_id) REFERENCES plaza(id)
 );
+
+CREATE TABLE Tarifa (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  factor DOUBLE,
+  factorTiempo VARCHAR(250),
+
+
+);

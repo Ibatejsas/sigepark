@@ -50,7 +50,6 @@ public class ConfiguracionRest implements RepositoryRestConfigurer {
 		config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept"));
 		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH"));
 		source.registerCorsConfiguration("/**", config);
-
 		return new CorsFilter(source);
 	}
 
@@ -65,7 +64,8 @@ public class ConfiguracionRest implements RepositoryRestConfigurer {
 		.withItemExposure((metadata, httpMethods) -> httpMethods.disable(HttpMethod.DELETE));
 		// config.forDomainType(Ticket.class).withItemExposure((metadata, httpMethods)
 		// -> httpMethods.disable(HttpMethod.PUT));
-
+		// config.forDomainType(Ticket.class).withItemExposure(filter)
+		restConfig.exposeIdsFor(Ticket.class);
 	}
 
 }

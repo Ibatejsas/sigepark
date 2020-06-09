@@ -1,6 +1,8 @@
 package com.dim.sigepark.entity;
 
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,8 @@ public class Plaza {
 	@Id // Clave principal en la base de datos de la tabla plaza
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Delega la estrategia a la base de datos, en H2
 	private Long id;
+	
+	@Column(nullable = false)
 	private Boolean ocupado;
 
 	// Propiedad OneToMany, de una Plaza se pueden obtener la lista de tickets que
