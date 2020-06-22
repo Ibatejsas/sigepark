@@ -33,10 +33,6 @@ public class Ticket {
 	private LocalDateTime salida;
 
 	@ManyToOne
-	@JoinColumn(name = "plaza_id")
-	private Plaza plaza;
-	
-	@ManyToOne
 	@JoinColumn(name = "tarifa_id")
 	private Tarifa tarifa;
 
@@ -44,14 +40,13 @@ public class Ticket {
 		super();
 	}
 
-	public Ticket(String matricula, boolean pagado, LocalDateTime entrada, LocalDateTime salida, Plaza plaza,
+	public Ticket(String matricula, boolean pagado, LocalDateTime entrada, LocalDateTime salida,
 			Tarifa tarifa) {
 		super();
 		this.matricula = matricula;
 		this.pagado = pagado;
 		this.entrada = entrada;
 		this.salida = salida;
-		this.plaza = plaza;
 		this.tarifa = tarifa;
 	}
 
@@ -99,12 +94,6 @@ public class Ticket {
 		this.salida = salida;
 	}
 
-	public Plaza getPlaza() {
-		return plaza;
-	}
 
-	public void setPlaza(Plaza plaza) {
-		this.plaza = plaza;
-	}
 
 }

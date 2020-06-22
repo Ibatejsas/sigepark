@@ -51,7 +51,7 @@ public class TicketController {
 			}
 			Plaza plaza = plazasLibres.stream().findFirst().get();
 			plaza.setOcupado(true);
-			ticket.setPlaza(plaza);
+
 			
 	         if(isWeekend()) {
 	             ticket.setTarifa(tarifaDAO.findTarifaByTipo(Tarifa.Type.FIN_SEMANA));
@@ -76,13 +76,14 @@ public class TicketController {
 	public PersistentEntityResource patchTicket(@PathVariable Long id, PersistentEntityResourceAssembler assembler) {
 
 		Ticket ticketUpdated = ticketDAO.getOne(id);
+		List<Plaza> plazasOcupadas = plazaDAO.findByOcupado(true);
 
 		if (plazaDAO.findByOcupado(true).size() > 0 && ticketUpdated != null && !ticketUpdated.isPagado()) {
 
 			ticketUpdated.setSalida(LocalDateTime.now(ZoneId.of("Europe/Paris")));
 			ticketUpdated.setPagado(true);
 
-			Plaza plaza = ticketUpdated.getPlaza();
+			Plaza plaza = plazasOcupadas.get(0);
 			plaza.setOcupado(false);
 
 			Ticket newTicket = ticketDAO.save(ticketUpdated);

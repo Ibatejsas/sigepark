@@ -19,11 +19,6 @@ public class Plaza {
 	@Column(nullable = false)
 	private Boolean ocupado;
 
-	// Propiedad OneToMany, de una Plaza se pueden obtener la lista de tickets que
-	// la han ocupado
-	@OneToMany(mappedBy = "plaza")
-	private List<Ticket> tickets;
-
 	protected Plaza() {
 		super();
 	}
@@ -46,9 +41,5 @@ public class Plaza {
 		this.ocupado = ocupado;
 	}
 
-	// anadimos el getter de tickets al anadir la lista de Tickets
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
 
 }
