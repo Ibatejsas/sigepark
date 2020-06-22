@@ -65,7 +65,10 @@ public class ConfiguracionRest implements RepositoryRestConfigurer {
 		// config.forDomainType(Ticket.class).withItemExposure((metadata, httpMethods)
 		// -> httpMethods.disable(HttpMethod.PUT));
 		// config.forDomainType(Ticket.class).withItemExposure(filter)
+		
+		//Exponemos los id de las plazas para indicar el numero de la plaza
 		restConfig.exposeIdsFor(Ticket.class);
+		restConfig.exposeIdsFor(Plaza.class);
 	}
 
 }

@@ -20,18 +20,30 @@ public class Tarifa {
 
 	@Column(nullable = false)
 	private FactorTiempo factorTiempo;
+	
+	
+	//El campo tipo define una tarifa en concreto por eso es único
+	//Se podria hacer una tabla de tarifas
+	@Column(nullable = false, unique = true)
+	private Type tipo;
+	
+	
+	public enum Type {
+	    NORMAL, FIN_SEMANA
+	}
 
-	private enum FactorTiempo {
+	public enum FactorTiempo {
 		MINUTO, HORA
 	}
 
 	@OneToMany(mappedBy = "tarifa")
 	private List<Ticket> tickets;
 
-	public Tarifa(double factor, FactorTiempo factorTiempo) {
+	public Tarifa(double factor, FactorTiempo factorTiempo, Type tipo) {
 		super();
 		this.factor = factor;
 		this.factorTiempo = factorTiempo;
+		this.tipo = tipo;
 	}
 
 	protected Tarifa() {
@@ -55,6 +67,16 @@ public class Tarifa {
 
 	public void setFactorTiempo(FactorTiempo factorTiempo) {
 		this.factorTiempo = factorTiempo;
-	};
+	}
+
+    public Type getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Type tipo) {
+        this.tipo = tipo;
+    }
+	
+	
 
 }

@@ -15,4 +15,8 @@ public interface TarifaDAO extends JpaRepository<Tarifa, Long>{
 	@RestResource(exported = false)
 	void deleteById(Long id);
 	
+	//devuelve la tarifa por tipo
+	@RestResource(path = "por-tipo")
+	Tarifa findTarifaByTipo(Tarifa.Type tipo);
+	
 }

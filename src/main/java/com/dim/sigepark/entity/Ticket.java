@@ -1,6 +1,7 @@
 package com.dim.sigepark.entity;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,9 +26,10 @@ public class Ticket {
 	@Column(nullable = false)
 	private boolean pagado = false;
 
-	@Column(nullable = false)
-	private LocalDateTime entrada = LocalDateTime.now();
+	@Column(nullable = false, columnDefinition = "TIMESTAMP") //le indicamos a JPA que es un localdatetime
+	private LocalDateTime entrada = LocalDateTime.now(ZoneId.of("Europe/Paris"));
 
+	@Column(columnDefinition = "TIMESTAMP")
 	private LocalDateTime salida;
 
 	@ManyToOne

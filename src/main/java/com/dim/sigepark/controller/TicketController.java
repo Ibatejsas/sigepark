@@ -1,6 +1,8 @@
 package com.dim.sigepark.controller;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
 
 import com.dim.sigepark.entity.Plaza;
+import com.dim.sigepark.entity.Tarifa;
 import com.dim.sigepark.entity.Ticket;
 import com.dim.sigepark.repository.PlazaDAO;
 import com.dim.sigepark.repository.TarifaDAO;
@@ -49,6 +52,15 @@ public class TicketController {
 			Plaza plaza = plazasLibres.stream().findFirst().get();
 			plaza.setOcupado(true);
 			ticket.setPlaza(plaza);
+			
+	         if(isWeekend()) {
+	             ticket.setTarifa(tarifaDAO.findTarifaByTipo(Tarifa.Type.FIN_SEMANA));
+	         }
+	         else {
+	             ticket.setTarifa(tarifaDAO.findTarifaByTipo(Tarifa.Type.NORMAL));
+	         }
+            
+			
 			Ticket newTicket = ticketDAO.save(ticket);
 			plazaDAO.save(plaza);
 
@@ -58,7 +70,7 @@ public class TicketController {
 		throw new HttpClientErrorException(HttpStatus.PRECONDITION_FAILED, "No hay plazas libres");
 	}
 
-	// obtener tickets
+	// obtener tickets 
 	@PatchMapping("/tickets/{id}")
 	@ResponseBody
 	public PersistentEntityResource patchTicket(@PathVariable Long id, PersistentEntityResourceAssembler assembler) {
@@ -67,7 +79,7 @@ public class TicketController {
 
 		if (plazaDAO.findByOcupado(true).size() > 0 && ticketUpdated != null && !ticketUpdated.isPagado()) {
 
-			ticketUpdated.setSalida(LocalDateTime.now());
+			ticketUpdated.setSalida(LocalDateTime.now(ZoneId.of("Europe/Paris")));
 			ticketUpdated.setPagado(true);
 
 			Plaza plaza = ticketUpdated.getPlaza();
@@ -81,5 +93,13 @@ public class TicketController {
 		}
 
 		throw new HttpClientErrorException(HttpStatus.PRECONDITION_FAILED, "Tu coche no esta en el parking");
+	}
+	
+	//Seleccionamos fin de semana y zona horaria europea
+	private boolean isWeekend() {
+	    
+	    DayOfWeek dia = LocalDateTime.now(ZoneId.of("Europe/Paris")).getDayOfWeek();
+       
+	    return dia == DayOfWeek.SATURDAY || dia == DayOfWeek.SUNDAY;
 	}
 }
