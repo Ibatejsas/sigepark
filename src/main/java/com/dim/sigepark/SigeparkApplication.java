@@ -23,11 +23,9 @@ public class SigeparkApplication {
 	}
 
 	public static void main(String[] args) {
-
 		ConfigurableApplicationContext context = SpringApplication.run(SigeparkApplication.class, args);
 		PlazaDAO plazaDAO = context.getBean(PlazaDAO.class);
 		ParkingProperties parkingProperties = context.getBean(ParkingProperties.class);
-
 		initPlazas(plazaDAO, parkingProperties);
 	}
 
