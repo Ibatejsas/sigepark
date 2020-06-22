@@ -21,7 +21,7 @@ public class PlazaController {
 	@DeleteMapping("/plazas")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void deletePlaza() {
-		List<Plaza> plazas = plazaDAO.findAll();
+		List<Plaza> plazas = plazaDAO.findByOcupado(false);
 		if (plazas.size() > 0) {
 			Plaza plazaABorrar = plazas.get(plazas.size() - 1);
 			plazaDAO.delete(plazaABorrar);
