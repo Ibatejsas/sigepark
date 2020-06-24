@@ -42,7 +42,7 @@ public class Tarifa {
 	public Tarifa(double factor, FactorTiempo factorTiempo, Type tipo) {
 		super();
 		this.factor = factor;
-		this.factorTiempo = factorTiempo;
+		this.factor_tiempo = factorTiempo;
 		this.tipo = tipo;
 	}
 
@@ -62,11 +62,11 @@ public class Tarifa {
 	}
 
 	public FactorTiempo getFactorTiempo() {
-		return factorTiempo;
+		return factor_tiempo;
 	}
 
 	public void setFactorTiempo(FactorTiempo factorTiempo) {
-		this.factorTiempo = factorTiempo;
+		this.factor_tiempo = factorTiempo;
 	}
 
     public Type getTipo() {
