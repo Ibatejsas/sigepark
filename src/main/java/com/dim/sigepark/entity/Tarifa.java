@@ -19,7 +19,7 @@ public class Tarifa {
 	private double factor;
 
 	@Column(nullable = false)
-	private FactorTiempo factorTiempo;
+	private FactorTiempo factor_tiempo;
 	
 	
 	//El campo tipo define una tarifa en concreto por eso es único
