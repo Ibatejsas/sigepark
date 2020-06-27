@@ -12,12 +12,17 @@ import org.springframework.web.client.HttpClientErrorException;
 import com.dim.sigepark.entity.Plaza;
 import com.dim.sigepark.repository.PlazaDAO;
 
+
+// Spring data rest nos permite exponer operaciones crud contra ellos
+// Para exponer o personalizar endpoints existentes
 @RepositoryRestController
 public class PlazaController {
 
+	//Indicamos a Spring que inyecte esta dependencia
 	@Autowired
 	PlazaDAO plazaDAO;
 
+	//Indicamos que el metodo es un delete
 	@DeleteMapping("/plazas")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void deletePlaza() {

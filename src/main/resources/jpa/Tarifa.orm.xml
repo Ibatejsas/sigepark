@@ -4,11 +4,13 @@
 			     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm 
 			     				     http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
 			     version="1.0">
-
+    <!-- Indicamos contra que clase java mapea este XML -->
+    <!-- Dos tipos de acceso por FIELD o por PROPERTIES -->
+    <!-- Al ser por FIELD va a usar los getter y los setter de forma automática -->  
+    <!-- Al ser por PROPERTIESS se indica manualmente por medio de anotaciones -->  
     <entity class="com.dim.sigepark.entity.Tarifa" access="FIELD">
         <table name="Tarifa"/>
-        
-                
+  <!-- Indicamos las propiedades de los atributos -->
         <attributes>
             <id name="id">
                 <generated-value strategy="IDENTITY"/>
@@ -20,7 +22,7 @@
             		<column unique="true"></column>
             
             </basic>     
-            <!-- RELACION CON TABLA TARIFAS -->
+            <!-- Indicamos la relacion con la tabla tarifas -->
             <one-to-many name="tickets" 
             target-entity="com.dim.sigepark.entity.Ticket" mapped-by="tarifa"/>
         </attributes>

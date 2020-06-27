@@ -2,7 +2,6 @@ package com.dim.sigepark.config;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import com.dim.sigepark.entity.Tarifa;
 import com.dim.sigepark.entity.Tarifa.FactorTiempo;
 import com.dim.sigepark.entity.Tarifa.Type;
@@ -11,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+
+// Los MixIns es una forma de indicar a Jackson como mapear los Json a
+// clases java
 public class MixIns {
 
 	@JsonPropertyOrder({ "id", "ocupado" })

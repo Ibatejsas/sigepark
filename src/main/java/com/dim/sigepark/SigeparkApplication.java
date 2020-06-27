@@ -21,10 +21,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 //Autoconfiguracion de Spring Boot
+//@ImportResource indicamos la configuracion por xml
+//
 
 @SpringBootApplication
 @ImportResource({"classpath:config/jpa-config.xml"})
-@Import(ConfiguracionPorJava.class)
+//@Import(ConfiguracionPorJava.class) ¿Es necesario al tener el 
+//Component Scan en Configuracion por java?
 public class SigeparkApplication {
 	
 	private static final Logger log = LoggerFactory.getLogger(SigeparkApplication.class);
