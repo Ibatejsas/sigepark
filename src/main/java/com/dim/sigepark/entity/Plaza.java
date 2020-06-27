@@ -1,19 +1,18 @@
 package com.dim.sigepark.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
+
+// Se deja una entidad como ejemplo de uso de @Entity en vez de ORM por XML
 @Entity
 public class Plaza {
-
+	
 	@Id // Clave principal en la base de datos de la tabla plaza
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // Delega la estrategia a la base de datos, en H2
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Delega la estrategia a la base de datos
 	private Long id;
 	
 	@Column(nullable = false)
@@ -40,6 +39,5 @@ public class Plaza {
 	public void setOcupado(Boolean ocupado) {
 		this.ocupado = ocupado;
 	}
-
 
 }

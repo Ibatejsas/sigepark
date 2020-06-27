@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+			     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm 
+			     				     http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+			     version="1.0">
+
+    <entity class="com.dim.sigepark.entity.Ticket" access="FIELD">
+        <table name="Ticket"/>
+        
+                
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+          
+            <basic name="matricula" optional="false">
+            <column length="10"/>
+            </basic>
+            <basic name="pagado" optional="false"></basic>      
+            <basic name="entrada" optional="false">
+            	<column column-definition="TIMESTAMP"></column>
+            </basic>    
+            <basic name="salida">
+            	<column column-definition="TIMESTAMP"></column>
+            </basic>  
+      
+             <!-- RELACION CON TABLA TARIFA -->
+			<many-to-one name="tarifa" fetch="LAZY" optional="false">
+            	<join-column referenced-column-name="id" name="tarifa_id"/>
+      		</many-to-one>
+
+        </attributes>
+    </entity>
+</entity-mappings>

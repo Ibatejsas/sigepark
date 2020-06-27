@@ -1,47 +1,27 @@
 package com.dim.sigepark.entity;
 
 import java.time.LocalDateTime;
+
 import java.time.ZoneId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
-
-@Entity
 public class Ticket {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-	@Column(nullable = false)
 	private String matricula;
-
-	@Column(nullable = false)
 	private boolean pagado = false;
-
-	@Column(nullable = false, columnDefinition = "TIMESTAMP") //le indicamos a JPA que es un localdatetime
 	private LocalDateTime entrada = LocalDateTime.now(ZoneId.of("Europe/Paris"));
-
-	@Column(columnDefinition = "TIMESTAMP")
 	private LocalDateTime salida;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "tarifa_id")
 	private Tarifa tarifa;
 
 	protected Ticket() {
 		super();
 	}
 
-	public Ticket(String matricula, boolean pagado, LocalDateTime entrada, LocalDateTime salida,
-			Tarifa tarifa) {
+	public Ticket(String matricula, boolean pagado, LocalDateTime entrada, LocalDateTime salida, Tarifa tarifa) {
 		super();
 		this.matricula = matricula;
 		this.pagado = pagado;
@@ -93,7 +73,5 @@ public class Ticket {
 	public void setSalida(LocalDateTime salida) {
 		this.salida = salida;
 	}
-
-
 
 }
